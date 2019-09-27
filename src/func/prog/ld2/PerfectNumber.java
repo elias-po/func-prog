@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public class PerfectNumber {
@@ -24,13 +25,24 @@ public class PerfectNumber {
     }
 
     public static Set<Integer> divisors(int n) {
+        Set<Integer> initialDivisors = new HashSet<>();
         Set<Integer> divisors = new HashSet<>();
         IntPredicate modulus = (x) -> n % x == 0;
+        Predicate<Integer> moreModulus = (y) -> n % (n/y) == 0;
+
         IntStream
                 .iterate(1, (i) -> i + 1)
-                .limit(n)
+                .limit((long) Math.ceil(Math.sqrt(n)))
                 .filter(modulus)
+                .forEach(initialDivisors::add);
+
+        initialDivisors
+                .stream()
+                .filter(moreModulus)
+                .map(y -> n/y)
                 .forEach(divisors::add);
+
+        divisors.addAll(initialDivisors);
         return divisors;
     }
 
