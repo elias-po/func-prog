@@ -2,6 +2,11 @@ package func.prog.ld3;
 
 public class Solution {
 
+    /**
+     * Checks if a string is a palindrome (reads the same both ways)
+     * @param s string to check
+     * @return bool - if s is a palindrome
+     */
     static boolean palindrome(String s) {
         s = s.toLowerCase();
         if (s.length() == 1 || (s.length() == 2 && s.charAt(0) == s.charAt(1))) {
