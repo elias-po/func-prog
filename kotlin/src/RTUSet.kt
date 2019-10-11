@@ -16,32 +16,32 @@ typealias Set = (Int) -> Boolean
 /**
  * If  a set contains an element.
  */
-infix fun Set.contains(elem: Int): Boolean = TODO()
+infix fun Set.contains(elem: Int): Boolean = this(elem)
 
 /**
  * Singleton set from one element
  */
-fun singletonSet(elem: Int): Set = TODO()
+fun singletonSet(elem: Int): Set = {it == elem}
 
 /**
  * Union of the two sets
  */
-infix fun Set.union(set: Set): Set = TODO()
+infix fun Set.union(set: Set): Set = {this(it) || set(it)}
 
 /**
  * Intersection of the two sets
  */
-infix fun Set.intersect(set: Set): Set = TODO()
+infix fun Set.intersect(set: Set): Set = {this(it) && set(it)}
 
 /**
  * Difference of two given sets
  */
-infix fun Set.diff(set: Set): Set = TODO()
+infix fun Set.diff(set: Set): Set = {this(it) && !set(it)}
 
 /**
  * Filter
  */
-fun Set.filter(predicate: (Int) -> Boolean): Set = TODO()
+fun Set.filter(predicate: (Int) -> Boolean): Set = predicate
 
 /** =========== For brave enough =========== */
 
